@@ -1,0 +1,26 @@
+<h1>Stores carrying $brand.getBrandName() </h1>
+
+#if($brand.getStores())
+  <br><p>these stores carry $brand.getBrandName()</p><br>
+  <ul>
+    #foreach($store in $storesInBrand)
+      <li>$store.getName()</li>
+    #end
+  </ul>
+
+#end
+
+<h4>add stores to this class</h4>
+
+<form action='/brands/$brand.getId()/add' method='post'>
+    <input id="brand_id" name="brand_id" type="hidden" value="$brand.getId()">
+    <label for="storeid">pick a store to add</label>
+    <select id='storeid' name='storeid' type='text'>
+      #foreach($store in $allStores)
+        <option value="$store.getId()">$store.getName()</option>
+      #end
+    </select>
+    <button type='submit'>add store</button>
+</form>
+
+<p><a href='/'>Home</a></p>
